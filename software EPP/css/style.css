@@ -1,0 +1,292 @@
+/* ===============================
+   VARIABLES DE TEMA
+================================ */
+:root {
+    --bg: #f2f2f2;
+    --card: #ffffff;
+    --text: #111;
+    --header-bg: #222;
+    --header-text: #fff;
+    --border: #ddd;
+    --shadow: rgba(0,0,0,0.15);
+}
+
+body.dark {
+    --bg: #121212;
+    --card: #1e1e1e;
+    --text: #f2f2f2;
+    --header-bg: #000;
+    --header-text: #f2f2f2;
+    --border: #333;
+    --shadow: rgba(0,0,0,0.6);
+}
+
+/* ===============================
+   BASE
+================================ */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* ===============================
+   HEADER
+================================ */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--header-bg);
+    padding: 15px 20px;
+    color: var(--header-text);
+    box-shadow: 0 2px 10px var(--shadow);
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header h1 {
+    font-size: 20px;
+    margin: 0;
+}
+
+/* ===============================
+   BOTONES
+================================ */
+.btn {
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.btn.primary {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.btn.secondary {
+    background: #444;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.btn.success {
+    background: #2eb82e;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.btn.danger {
+    background: #e63946;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    opacity: 0.85;
+    transform: scale(0.98);
+}
+
+.btn.full {
+    width: 100%;
+}
+
+/* ===============================
+   CONTENEDORES
+================================ */
+.container {
+    padding: 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.card {
+    background: var(--card);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px var(--shadow);
+    border: 1px solid var(--border);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+/* ===============================
+   FORMULARIOS
+================================ */
+.input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+/* ===============================
+   TABLAS
+================================ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table th {
+    background: #333;
+    color: white;
+    padding: 12px;
+}
+
+table td {
+    border-bottom: 1px solid var(--border);
+    padding: 10px;
+}
+
+table tr:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+body.dark table tr:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* ===============================
+   PREVIEW QR
+================================ */
+#preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+}
+
+.qr-item {
+    background: var(--card);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow);
+    text-align: center;
+    transition: transform .2s;
+}
+
+.qr-item:hover {
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   ESCANER
+================================ */
+#reader {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px dashed var(--border);
+    padding: 10px;
+}
+
+/* ===============================
+   TOGGLE DARK MODE
+================================ */
+.theme-toggle {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+/* ====== MODO OSCURO ====== */
+body.dark {
+    background: #121212;
+    color: #eee;
+}
+
+body.dark .card {
+    background: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(255,255,255,0.05);
+}
+
+body.dark table th {
+    background: #000;
+}
+
+body.dark table tr:hover {
+    background: #2a2a2a;
+}
+
+body.dark .btn.secondary {
+    background: #333;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: white;
+}
+
+:root {
+  --bg: #f2f2f2;
+  --card: #ffffff;
+  --text: #000000;
+  --header: #222;
+}
+
+body.dark {
+  --bg: #121212;
+  --card: #1e1e1e;
+  --text: #f5f5f5;
+  --header: #000;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.card {
+  background: var(--card);
+}
+
+.header {
+  background: var(--header);
+}
+
+.grid-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat p {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 10px 0 0;
+}

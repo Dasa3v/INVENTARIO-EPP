@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Inventario EPP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <a href="home.html" class="btn secondary">⬅ Volver</a>
+    <h1>Dashboard Inventario</h1>
+</header>
+
+<main class="container">
+
+    <!-- TARJETAS RESUMEN -->
+    <section class="grid-dashboard">
+        <div class="card stat">
+            <h3>Productos distintos</h3>
+            <p id="total-productos">0</p>
+        </div>
+
+        <div class="card stat">
+            <h3>Unidades en almacén</h3>
+            <p id="total-unidades">0</p>
+        </div>
+    </section>
+
+    <!-- TABLA -->
+    <section class="card">
+        <h2>Unidades por producto</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-dashboard"></tbody>
+        </table>
+    </section>
+
+</main>
+
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>
