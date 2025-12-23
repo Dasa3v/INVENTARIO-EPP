@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Recuperar contraseña</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <a href="index.html" class="btn secondary">⬅ Volver</a>
+    <h1>Recuperar contraseña</h1>
+</header>
+
+<main class="container">
+
+<section class="card" style="max-width:400px;margin:auto;">
+    <h2>Restablecer</h2>
+
+    <div class="input-group">
+        <label>Usuario</label>
+        <input id="usuario" class="input">
+    </div>
+
+    <div class="input-group">
+        <label>Nueva contraseña</label>
+        <input type="password" id="password" class="input">
+    </div>
+
+    <button onclick="recuperar()" class="btn primary full">
+        Cambiar contraseña
+    </button>
+</section>
+
+</main>
+
+<script src="js/recuperar.js"></script>
+
+<script>
+function toggleTheme() {
+  const theme = document.documentElement.getAttribute("data-theme");
+  document.documentElement.setAttribute(
+    "data-theme",
+    theme === "dark" ? "light" : "dark"
+  );
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Registrados</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <a href="home.html" class="btn secondary">⬅ Volver</a>
+    <h1>Listado de Productos</h1>
+</header>
+
+<main class="container card">
+
+    <table id="productos-table">
+        <thead>
+            <tr>
+                <th>QR</th>
+                <th>Producto</th>
+                <th>Categoría</th>
+                <th>Talla</th>
+                <th>Color</th>
+                <th>Marca</th>
+                <th>Descripción</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <button class="btn primary full" onclick="cargarProductos()">Actualizar Inventario</button>
+
+</main>
+
+<!-- MODAL PARA EDITAR PRODUCTO -->
+<div id="modal" class="modal hidden">
+    <div class="modal-content card">
+        <h2>Editar Producto</h2>
+
+        <label>Producto</label>
+        <input id="edit-producto" type="text">
+
+        <label>Categoría</label>
+        <input id="edit-categoria" type="text">
+
+        <label>Talla</label>
+        <input id="edit-talla" type="text">
+
+        <label>Color</label>
+        <input id="edit-color" type="text">
+
+        <label>Marca</label>
+        <input id="edit-marca" type="text">
+
+        <label>Descripción</label>
+        <textarea id="edit-descripcion"></textarea>
+
+        <div class="modal-buttons">
+            <button class="btn success" onclick="guardarCambios()">Guardar</button>
+            <button class="btn danger" onclick="cerrarModal()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/productos.js"></script>
+
+</body>
+</html>

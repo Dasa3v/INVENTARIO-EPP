@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar Códigos QR</title>
+
+    <!-- estilos globales -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Mejoras visuales específicas para esta página */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            padding-top: 10px;
+        }
+
+        .qr-box {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+    <div class="header-left">
+        <a href="home.html" class="btn secondary">⬅ Volver</a>
+    </div>
+
+    <h1>Inventario EPP</h1>
+
+    <div class="header-right">
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </div>
+
+</header>
+
+<main class="container">
+
+    <!-- CARD DE OPCIONES -->
+    <section class="card">
+        <h2>Datos del Producto</h2>
+
+        <div class="grid-2">
+
+            <!-- PRODUCTO -->
+            <div class="input-group">
+                <label>Producto</label>
+                <select id="producto" class="input">
+                    <option value="">Seleccione...</option>
+                    <option value="Camisa">Camisa / Buso</option>
+                    <option value="Pantalón">Pantalón</option>
+                    <option value="Guantes">Guantes</option>
+                    <option value="Botas">Botas</option>
+                    <option value="Chaleco Reflectivo">Chaleco Reflectivo</option>
+                    <option value="Casco">Casco</option>
+                    <option value="Gafas">Gafas de Protección</option>
+                </select>
+            </div>
+
+            <!-- SUBTIPO -->
+            <div class="input-group" id="grupo-subtipo" style="display:none;">
+                <label>Subtipo</label>
+                <select id="subtipo" class="input"></select>
+            </div>
+
+            <!-- GENERO -->
+            <div class="input-group" id="grupo-genero" style="display:none;">
+                <label>Género</label>
+                <select id="genero" class="input"></select>
+            </div>
+
+            <!-- TALLA -->
+            <div class="input-group" id="grupo-talla" style="display:none;">
+                <label>Talla</label>
+                <select id="talla" class="input"></select>
+            </div>
+
+            <!-- COLOR -->
+            <div class="input-group" id="grupo-color" style="display:none;">
+                <label>Color</label>
+                <select id="color" class="input"></select>
+            </div>
+
+            <!-- MARCA -->
+            <div class="input-group" id="grupo-marca" style="display:none;">
+                <label>Marca</label>
+                <select id="marca" class="input"></select>
+            </div>
+
+            <!-- ADMINISTRATIVO / OPERATIVO -->
+            <div class="input-group">
+                <label>Tipo de Personal</label>
+                <select id="tipo-personal" class="input">
+                    <option value="">Seleccione...</option>
+                    <option value="ADMIN">Administrativo</option>
+                    <option value="OPER">Operativo</option>
+                </select>
+            </div>
+
+            <!-- CANTIDAD -->
+            <div class="input-group">
+                <label>Cantidad a generar</label>
+                <input id="cantidad" type="number" min="1" value="1" class="input">
+            </div>
+
+        </div>
+
+        <br>
+        <button onclick="generarQRs()" class="btn primary full">
+            Generar Códigos QR
+        </button>
+    </section>
+
+    <!-- CARD DE PREVISUALIZACIÓN -->
+    <section class="card">
+        <h2>Códigos generados</h2>
+
+        <div id="preview"></div>
+
+        <button onclick="descargarPDF()" class="btn success full">
+            Descargar PDF
+        </button>
+    </section>
+
+</main>
+
+<!-- LIBRERÍAS -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- SCRIPTS -->
+<script src="js/filtros-generar.js"></script>
+<script src="js/generar.js"></script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="es" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar Códigos QR</title>
+
+    <!-- estilos globales -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <a href="home.html" class="btn secondary">⬅ Volver</a>
+    </div>
+
+    <h1>Generar Códigos QR</h1>
+
+    <div class="header-right">
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- DATOS -->
+    <section class="card">
+        <h2>Datos del Producto</h2>
+
+        <div class="form-grid">
+
+            <div class="input-group">
+                <label>Producto</label>
+                <select id="producto" class="input">
+                    <option value="">Seleccione...</option>
+                    <option value="Camisa">Camisa / Buso</option>
+                    <option value="Pantalón">Pantalón</option>
+                    <option value="Guantes">Guantes</option>
+                    <option value="Botas">Botas</option>
+                    <option value="Chaleco">Chaleco Reflectivo</option>
+                    <option value="Casco">Casco</option>
+                    <option value="Gafas">Gafas de Protección</option>
+                </select>
+            </div>
+
+            <div class="input-group" id="grupo-subtipo" hidden>
+                <label>Subtipo</label>
+                <select id="subtipo" class="input"></select>
+            </div>
+
+            <div class="input-group" id="grupo-genero" hidden>
+                <label>Género</label>
+                <select id="genero" class="input"></select>
+            </div>
+
+            <div class="input-group" id="grupo-talla" hidden>
+                <label>Talla</label>
+                <select id="talla" class="input"></select>
+            </div>
+
+            <div class="input-group" id="grupo-color" hidden>
+                <label>Color</label>
+                <select id="color" class="input"></select>
+            </div>
+
+            <div class="input-group" id="grupo-marca" hidden>
+                <label>Marca</label>
+                <select id="marca" class="input"></select>
+            </div>
+
+            <div class="input-group">
+                <label>Tipo de Personal</label>
+                <select id="tipo-personal" class="input">
+                    <option value="">Seleccione...</option>
+                    <option value="ADMIN">Administrativo</option>
+                    <option value="OPER">Operativo</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Cantidad</label>
+                <input id="cantidad" type="number" min="1" value="1" class="input">
+            </div>
+
+        </div>
+
+        <button onclick="generarQRs()" class="btn primary full">
+            Generar Códigos QR
+        </button>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section class="card">
+        <h2>Códigos generados</h2>
+
+        <div id="preview" class="qr-preview"></div>
+
+        <button onclick="descargarPDF()" class="btn success full">
+            Descargar PDF
+        </button>
+    </section>
+
+</main>
+
+<!-- LIBRERÍAS -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- SCRIPTS -->
+<script src="js/filtros-generar.js"></script>
+<script src="js/generar.js"></script>
+
+<script>
+function toggleTheme() {
+    const html = document.documentElement;
+    const theme = html.getAttribute("data-theme");
+    html.setAttribute("data-theme", theme === "dark" ? "light" : "dark");
+}
+</script>
+
+</body>
+</html>
+
