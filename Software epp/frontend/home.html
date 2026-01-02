@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Sistema EPP</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Inventario EPP</h1>
+        <nav>
+            <a href="home.html" class="active">Inicio</a>
+            <a href="inventario.html">Inventario</a>
+            <a href="productos.html">Productos</a>
+            <a href="generar.html">Generar QR</a>
+            <a href="dashboard.html">Dashboard</a>
+            <button class="theme-toggle" id="theme-toggle">🌙</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Bienvenido al Sistema de Inventario EPP</h2>
+            <p>Gestiona tus Equipos de Protección Personal de manera eficiente con códigos QR.</p>
+        </div>
+
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>📦 Inventario</h3>
+                <p>Escanea códigos QR para registrar entradas y salidas de productos.</p>
+                <a href="inventario.html" class="btn btn-primary">Ir a Inventario</a>
+            </div>
+
+            <div class="card">
+                <h3>📋 Productos</h3>
+                <p>Gestiona y visualiza todos tus productos registrados.</p>
+                <a href="productos.html" class="btn btn-primary">Ver Productos</a>
+            </div>
+
+            <div class="card">
+                <h3>🔲 Generar QR</h3>
+                <p>Crea nuevos códigos QR para tus productos.</p>
+                <a href="generar.html" class="btn btn-primary">Generar QR</a>
+            </div>
+
+            <div class="card">
+                <h3>📊 Dashboard</h3>
+                <p>Visualiza estadísticas y resúmenes de tu inventario.</p>
+                <a href="dashboard.html" class="btn btn-primary">Ver Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+</body>
+</html>
+
+

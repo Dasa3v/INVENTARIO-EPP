@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Conexión - Backend</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🔍 Test de Conexión con Backend</h1>
+        <p>Esta página te ayuda a verificar si el backend está funcionando correctamente.</p>
+        
+        <div id="resultados"></div>
+        
+        <button onclick="testConexion()">Probar Conexión</button>
+        <button onclick="testAPI()">Probar API</button>
+        <button onclick="testLogin()">Probar Login</button>
+    </div>
+
+    <div class="card">
+        <h2>📋 Instrucciones</h2>
+        <ol>
+            <li><strong>Inicia el backend:</strong> Ejecuta <code>iniciar-backend.bat</code></li>
+            <li><strong>Verifica que veas:</strong> <code>Uvicorn running on http://127.0.0.1:8000</code></li>
+            <li><strong>Haz click en "Probar Conexión"</strong> arriba</li>
+            <li>Si ves ✅ verde, el backend está funcionando</li>
+            <li>Si ves ❌ rojo, revisa los errores mostrados</li>
+        </ol>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8000/api';
+        const resultados = document.getElementById('resultados');
+
+        function mostrarResultado(titulo, mensaje, tipo) {
+            const div = document.createElement('div');
+            div.className = `status ${tipo}`;
+            div.innerHTML = `<strong>${titulo}</strong><br>${mensaje}`;
+            resultados.appendChild(div);
+        }
+
+        function limpiarResultados() {
+            resultados.innerHTML = '';
+        }
+
+        async function testConexion() {
+            limpiarResultados();
+            mostrarResultado('🔄 Probando...', 'Conectando con http://localhost:8000', 'info');
+
+            try {
+                const response = await fetch('http://localhost:8000/docs');
+                if (response.ok) {
+                    mostrarResultado('✅ Conexión Exitosa', 
+                        'El backend está corriendo correctamente. Puedes acceder a la documentación en http://localhost:8000/docs', 
+                        'success');
+                } else {
+                    mostrarResultado('⚠️ Respuesta Inesperada', 
+                        `El servidor respondió con código: ${response.status}`, 
+                        'error');
+                }
+            } catch (error) {
+                mostrarResultado('❌ Error de Conexión', 
+                    `No se pudo conectar al backend. Asegúrate de que esté corriendo.<br><br>
+                    <strong>Error:</strong> ${error.message}<br><br>
+                    <strong>Soluciones:</strong><br>
+                    1. Verifica que el backend esté corriendo (ejecuta iniciar-backend.bat)<br>
+                    2. Verifica que veas "Uvicorn running" en la terminal<br>
+                    3. Abre http://localhost:8000/docs en el navegador para verificar`, 
+                    'error');
+            }
+        }
+
+        async function testAPI() {
+            limpiarResultados();
+            mostrarResultado('🔄 Probando API...', 'Probando endpoint /api/dashboard', 'info');
+
+            try {
+                const response = await fetch(`${API_URL}/dashboard`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    mostrarResultado('✅ API Funcionando', 
+                        `El endpoint /api/dashboard responde correctamente.<br><pre>${JSON.stringify(data, null, 2)}</pre>`, 
+                        'success');
+                } else {
+                    mostrarResultado('⚠️ Error en API', 
+                        `El servidor respondió con código: ${response.status}`, 
+                        'error');
+                }
+            } catch (error) {
+                mostrarResultado('❌ Error de Conexión API', 
+                    `No se pudo conectar a la API.<br><strong>Error:</strong> ${error.message}`, 
+                    'error');
+            }
+        }
+
+        async function testLogin() {
+            limpiarResultados();
+            mostrarResultado('🔄 Probando Login...', 'Probando endpoint /api/login', 'info');
+
+            try {
+                const response = await fetch(`${API_URL}/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        usuario: 'test',
+                        password: 'test'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.status === 401) {
+                    mostrarResultado('✅ Endpoint Funcionando', 
+                        'El endpoint de login responde correctamente (error 401 es esperado si el usuario no existe).', 
+                        'success');
+                } else if (response.ok) {
+                    mostrarResultado('✅ Login Exitoso', 
+                        `Login funcionando correctamente.<br><pre>${JSON.stringify(data, null, 2)}</pre>`, 
+                        'success');
+                } else {
+                    mostrarResultado('⚠️ Respuesta Inesperada', 
+                        `Código: ${response.status}<br><pre>${JSON.stringify(data, null, 2)}</pre>`, 
+                        'error');
+                }
+            } catch (error) {
+                mostrarResultado('❌ Error de Conexión', 
+                    `No se pudo conectar al endpoint de login.<br><strong>Error:</strong> ${error.message}`, 
+                    'error');
+            }
+        }
+
+        // Auto-probar al cargar
+        window.addEventListener('load', function() {
+            setTimeout(testConexion, 500);
+        });
+    </script>
+</body>
+</html>
+

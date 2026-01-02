@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar QR - Sistema EPP</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Cargar QRCode LOCAL - No requiere internet -->
+    <script src="js/lib/qrcode-simple.js"></script>
+    <script>
+        // Verificar que la librería local se cargó
+        window.addEventListener('load', function() {
+            if (typeof QRCode !== 'undefined' && typeof QRCode.toCanvas === 'function') {
+                console.log('✅ QRCode local cargado correctamente (sin necesidad de internet)');
+            } else {
+                console.error('❌ Error: QRCode local no se cargó correctamente');
+                const alertContainer = document.getElementById('alert-container');
+                if (alertContainer) {
+                    alertContainer.innerHTML = `
+                        <div class="alert alert-error">
+                            <strong>⚠️ Error</strong><br>
+                            No se pudo cargar la librería QRCode local.<br>
+                            Verifica que el archivo js/lib/qrcode-simple.js exista.
+                        </div>
+                    `;
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Sistema de Inventario EPP</h1>
+        <nav>
+            <a href="home.html">Inicio</a>
+            <a href="inventario.html">Inventario</a>
+            <a href="productos.html">Productos</a>
+            <a href="generar.html" class="active">Generar QR</a>
+            <a href="dashboard.html">Dashboard</a>
+            <button class="theme-toggle" id="theme-toggle">🌙</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Generar Código QR</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Selecciona el tipo de producto y genera un código QR único. Los detalles del producto se asignarán cuando lo registres en el inventario.
+            </p>
+
+            <div id="alert-container"></div>
+
+            <form id="generar-form">
+                <div class="form-group">
+                    <label for="producto">Tipo de Producto *</label>
+                    <select id="producto" name="producto" required>
+                        <option value="">Seleccione un tipo</option>
+                        <option value="Casco">Casco</option>
+                        <option value="Botas">Botas</option>
+                        <option value="Chaleco">Chaleco</option>
+                        <option value="Guantes">Guantes</option>
+                        <option value="Gafas">Gafas</option>
+                        <option value="Arnés">Arnés</option>
+                        <option value="Mascarilla">Mascarilla</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Generar QR</button>
+            </form>
+        </div>
+
+        <div id="qr-result" class="card hidden">
+            <h2>QR Generado</h2>
+            <div class="qr-container">
+                <div id="qr-code"></div>
+                <div style="text-align: center;">
+                    <p style="margin-bottom: 1rem; font-weight: 600;" id="qr-text"></p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
+                        <button id="download-qr" class="btn btn-success">📥 Descargar PNG</button>
+                        <button id="download-svg" class="btn btn-success">📥 Descargar SVG</button>
+                        <button id="registrar-producto" class="btn btn-primary">📝 Registrar Producto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/generar.js"></script>
+</body>
+</html>
+
+

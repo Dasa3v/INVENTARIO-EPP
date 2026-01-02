@@ -1,0 +1,56 @@
+╔══════════════════════════════════════════════════════════════╗
+║     🚀 INSTRUCCIONES RÁPIDAS PARA EJECUTAR EL PROYECTO      ║
+╚══════════════════════════════════════════════════════════════╝
+
+✅ PASO 1: INICIAR EL BACKEND (SERVIDOR API)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OPCIÓN A (MÁS FÁCIL):
+  → Doble click en: iniciar-backend.bat
+  → Se abrirá una ventana negra
+  → DEBE QUEDARSE ABIERTA
+  → Verás: "Uvicorn running on http://127.0.0.1:8000"
+
+OPCIÓN B (MANUAL):
+  1. Abre PowerShell
+  2. Ejecuta estos comandos:
+     cd "C:\Users\DASAEV\Desktop\Software epp\backend"
+     python -m uvicorn main:app --reload
+
+✅ PASO 2: ABRIR EL FRONTEND (INTERFAZ WEB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OPCIÓN A (VS CODE - RECOMENDADO):
+  1. Instala VS Code: https://code.visualstudio.com/
+  2. Instala extensión "Live Server"
+  3. Abre la carpeta "frontend" en VS Code
+  4. Click derecho en "index.html" → "Open with Live Server"
+
+OPCIÓN B (PYTHON HTTP SERVER):
+  1. Abre una NUEVA ventana de PowerShell
+  2. Ejecuta:
+     cd "C:\Users\DASAEV\Desktop\Software epp\frontend"
+     python -m http.server 8080
+  3. Abre navegador: http://localhost:8080
+
+✅ PASO 3: USAR EL SISTEMA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Crea una cuenta (Registrarse)
+2. Inicia sesión
+3. ¡Listo! Ya puedes usar el sistema
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 RESUMEN:
+  • Backend: http://localhost:8000 (debe estar corriendo)
+  • Frontend: http://localhost:8080 (o el puerto que uses)
+  • Documentación API: http://localhost:8000/docs
+
+⚠️ IMPORTANTE:
+  • El backend DEBE estar corriendo antes de usar el frontend
+  • NO cierres la ventana del backend mientras uses el sistema
+  • Si hay errores, revisa la consola del navegador (F12)
+
+📖 Para más detalles, lee: GUIA-EJECUCION.md
+
